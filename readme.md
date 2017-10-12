@@ -14,9 +14,11 @@ Add nickname field in WooCommerce, account setting screen.
 ## Description
 
 By default, WooCommerce displays first name or user_login field.
-This plugin adds funtion more choices.
+This plugin adds function more choices.
 
-1. Customers
+1. Customers can enter nickname by themselves.
+2. Automatically generate from first name and last name.
+3. Filter your own.
 
 ## Installation
 

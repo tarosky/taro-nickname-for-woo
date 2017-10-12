@@ -1,0 +1,30 @@
+language: php
+notifications:
+  email:
+    on_success: never
+    on_failure: change
+branches:
+  only:
+  - master
+  - "/^v?[0-9\\.]+$/"
+php:
+- 5.6
+- 7.0
+- 7.1
+env:
+  matrix:
+  - WP_VERSION=latest WP_MULTISITE=0
+  - WP_VERSION=4.7 WP_MULTISITE=0
+  global:
+  - SVN_REPO: https://plugins.svn.wordpress.org/taro-nickname-for-woo
+  - secure: "U3gsXzGRmjvTPc2hgdVTg8YOZuJI3Dzax774sluOffWlx8BhhLVv0iSIQhoKXZ2UNDT3YHZS0ZFd96H4fZ+6vCmxT2ibO5Tw1BZiI49LVwFkvLLBoIqboXAyJKWRN5KR9Ci387B3Sc4jSrRKwi0r6R3EvuH2ePscmT6t6HhqkkbH4zLHnUmzSjAuHQ0BXrWCFJywu1l01yCkl8dbdJyF93XzusozuHskQoomPfSze00Qm2X+BU/qqYB23EdMU85Pvk6+IL9i5AP5G0cHIwK7CDeXA9Im7clx60N6sWswc2WcpKqlLzUaYz6uiXhY3XIiYnVw/IYQrzb/OmZrDdT7qoJV+d5fjgP4rQLT87v7YcCacuFzdFar+Q+tbHxvmPi5ioAXKNLHFjjDhPqSLkS4Ge4/0u3evHh+ym5GC4x8I47MjGsd/WCHCAL7/dT63EBO06uAA5N3MkMe7w69uXmy8HUNJ9ocS2ViblmXxpg2ytDnashXc8srvLeQ/WEhoHLE1WAXGvm/yNQ3LZSwCYq5RBdRd6WevhqaiMwub3ZqsiufJEij1RJRX2mbk+pCQBXxzSNVLx4ACgSWJst8r8c0Fo9rJ2jHYK9kxa4XPAsUh1jfX37AiEf3aWI1pAnqdzW6smB1m6Zq2n3Aq0FrwspdUJ2YLf88zx6rcsOVDIwUFEk="
+matrix:
+  include:
+  - php: 5.6
+    env: WP_VERSION=4.7 WP_MULTISITE=0 WP_PULUGIN_DEPLOY=1
+before_script:
+- composer install
+- bash bin/install-wp-tests.sh wordpress_test root '' localhost $WP_VERSION
+script:
+- vendor/bin/phpunit
+after_success: curl -L https://raw.githubusercontent.com/miya0001/travis2wpplugin/master/deploy.sh | bash
