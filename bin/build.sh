@@ -11,8 +11,8 @@ echo 'Generate readme.'
 curl -L https://raw.githubusercontent.com/fumikito/wp-readme/master/wp-readme.php | php
 # Remove files
 #rm -rf node_modules
-#rm -rf tests
-#rm -rf bin
+rm -rf tests
+rm -rf bin
 rm readme.md
 
 if [ $TRAVIS_TAG ]; then
