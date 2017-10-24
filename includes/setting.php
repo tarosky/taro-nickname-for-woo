@@ -40,7 +40,7 @@ add_filter( 'woocommerce_account_settings', function( $settings ) {
 			$new_settings[] = [
 				'id'       => 'taro_nickname_for_woo_setting',
 				'title'    => __( 'Display Name', 'taro-nickname' ),
-				'desc'     => __( 'By default, WooCommerce generate display name and keep it. You can change it\'s behavior with this option.', 'taro-nickname' ),
+				'desc'     => __( 'By default, WooCommerce generate display name and keep it. You can change this behavior with this option.', 'taro-nickname' ),
 				'type'     => 'select',
 				'default'  => 'nickname',
 				'autoload' => false,
